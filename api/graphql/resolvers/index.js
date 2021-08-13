@@ -37,19 +37,23 @@ const data = {
   ]
 };
 
-exports.portfolioResolvers = {
+exports.portfolioQueries = {
   hello: () => {
     return 'Hello World!';
   },
-  portfolio: ({ id }) => {
+  portfolio: (root, { id }) => {
+    console.log('root', root);
     const portfolio = data.portfolios.find((portfolio) => portfolio._id === id);
     return portfolio;
   },
   portfolios: () => {
     return data.portfolios;
-  },
-  createPortfolio: ({ input }) => {
-    debugger;
+  }
+};
+
+exports.portfolioMutations = {
+  createPortfolio: (root, { input }) => {
+    console.log('root', root);
     const _id = crypto.randomBytes(10).toString('hex');
     const newPortfolio = { ...input };
     newPortfolio._id = _id;
