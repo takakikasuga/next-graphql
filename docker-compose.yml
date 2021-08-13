@@ -1,0 +1,30 @@
+version: '3.7'
+
+services:
+  frontend:
+    build:
+      context: ./client
+    command: npm run dev
+    volumes:
+      - ./client:/usr/app/src
+    ports:
+      - '3000:3000'
+    tty: true
+    stdin_open: true
+    environment:
+      - REACT_APP_API_PORT=8000
+    depends_on:
+      - api
+  api:
+    build:
+      context: ./api
+    command: npm run dev
+    volumes:
+      - ./api:/usr/app/src
+    ports:
+      - '8000:8000'
+    tty: true
+    stdin_open: true
+    environment:
+      - API_PORT=8000
+      - CORS_PORT=3000

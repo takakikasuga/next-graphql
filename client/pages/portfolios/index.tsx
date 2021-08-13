@@ -1,7 +1,7 @@
 import { Fragment } from 'react';
 import type { NextPage } from 'next';
 
-const Home: NextPage = () => {
+const Portfoios: NextPage = () => {
   return (
     <Fragment>
       <h1>Hello world!!</h1>
@@ -9,4 +9,4 @@ const Home: NextPage = () => {
   );
 };
 
-export default Home;
+export default Portfoios;
