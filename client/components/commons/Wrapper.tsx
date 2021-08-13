@@ -1,11 +1,11 @@
 import React, { FC } from 'react';
 
-interface ContainerProps {
+interface WrapperProps {
   children: React.ReactNode;
 }
 
-const Container: FC<ContainerProps> = ({ children }) => {
+const Wrapper: FC<WrapperProps> = ({ children }) => {
   return <div className='container mx-auto px-4'>{children}</div>;
 };
 
-export default Container;
+export default Wrapper;

@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import Link from 'next/link';
 
 interface NextLink {
-  children: string;
+  children: string | Element | React.ReactNode;
   href: string;
   className: string;
 }

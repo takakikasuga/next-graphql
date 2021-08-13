@@ -3,16 +3,20 @@ import { GetStaticProps, GetStaticPaths } from 'next';
 import { ParsedUrlQuery } from 'node:querystring';
 import type { NextPage } from 'next';
 
-interface PortfolioDetailProps {
-  id: string;
-}
+import API from '@/api/portfolios/portfolios';
+import Redirect from '@/utils/preRender/preRenderRoute';
+import { PortfolioType } from '@/types/portfolios/portfolios';
 
-const PortfolioDetail: NextPage<PortfolioDetailProps> = ({ id }) => {
-  return <div>Categories ID: {id}</div>;
+const PortfolioDetail: NextPage<PortfolioType> = ({ portfolio }) => {
+  return (
+    <>
+      <div>{JSON.stringify(portfolio)}</div>
+    </>
+  );
 };
 
 interface PortfolioDetailStaticProps {
-  id: string;
+  portfolio: PortfolioType;
 }
 
 interface PortfolioDetailParams extends ParsedUrlQuery {
@@ -24,10 +28,13 @@ export const getStaticProps: GetStaticProps<
   PortfolioDetailParams
 > = async (ctx) => {
   const id = ctx.params!.id;
+  const portfolio = await API.fetchPortfolio(id);
+  console.log('portfolio', portfolio);
   return {
     props: {
-      id
-    }
+      portfolio
+    },
+    revalidate: 600
   };
 };
 

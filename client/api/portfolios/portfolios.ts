@@ -4,19 +4,21 @@ import Query from '@/graphql/query/portfolios';
 
 const PortfoliosAPI = {
   fetchPortfolios: async () => {
-    console.log(`${API_ADDRESS}/graphql`);
-    console.log('Query.portfoliosQuery', Query.portfoliosQuery);
-    return axios
-      .post(`${API_ADDRESS}/graphql`, { query: Query.portfoliosQuery })
-      .then((res) => {
-        return res.data.data;
-      })
-      .then((data) => {
-        return data.portfolios;
-      })
-      .then((portfolios) => {
-        return portfolios;
-      });
+    const response = await axios.post(`${API_ADDRESS}/graphql`, {
+      query: Query.portfoliosQuery
+    });
+    const portfolios = response.data.data.portfolios;
+    return portfolios;
+  },
+
+  fetchPortfolio: async (id: string) => {
+    const variables = { id };
+    const response = await axios.post(`${API_ADDRESS}/graphql`, {
+      query: Query.portfolioQuery,
+      variables
+    });
+    const portfolio = response.data.data.portfolio;
+    return portfolio;
   }
 };
 

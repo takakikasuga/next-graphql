@@ -1,6 +1,6 @@
 import React, { FC, Fragment } from 'react';
 
-import { Container } from './index';
+import { Wrapper } from './index';
 import { NextLink } from '../parts/index';
 
 interface NavbarProps {
@@ -11,7 +11,7 @@ const Navbar: FC<NavbarProps> = ({ children }) => {
   return (
     <Fragment>
       <header>
-        <Container>
+        <Wrapper>
           <ul className='flex'>
             <li className='mr-6'>
               <NextLink href='/' className='primary-btn block'>
@@ -39,9 +39,9 @@ const Navbar: FC<NavbarProps> = ({ children }) => {
               </NextLink>
             </li>
           </ul>
-        </Container>
+        </Wrapper>
       </header>
-      {children}
+      <Wrapper>{children}</Wrapper>
     </Fragment>
   );
 };
