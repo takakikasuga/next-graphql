@@ -1,3 +1,4 @@
+const crypto = require('crypto');
 const data = {
   portfolios: [
     {
@@ -46,5 +47,13 @@ exports.portfolioResolvers = {
   },
   portfolios: () => {
     return data.portfolios;
+  },
+  createPortfolio: ({ input }) => {
+    debugger;
+    const _id = crypto.randomBytes(10).toString('hex');
+    const newPortfolio = { ...input };
+    newPortfolio._id = _id;
+    data.portfolios.push(newPortfolio);
+    return newPortfolio;
   }
 };

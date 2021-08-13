@@ -28,6 +28,10 @@ const schema = buildSchema(`
     portfolio(id: ID): Portfolio
     portfolios: [Portfolio]
   }
+
+  type Mutation {
+    createPortfolio(input: PortfolioInput): Portfolio
+  }
 `);
 const root = {
   ...portfolioResolvers
