@@ -1,16 +1,32 @@
 import React from 'react';
 import { GetStaticProps, GetStaticPaths } from 'next';
 import { ParsedUrlQuery } from 'node:querystring';
-import type { NextPage } from 'next';
+import { NextPage } from 'next';
+import { useRouter } from 'next/router';
 
+import { useQuery } from '@apollo/client';
+import { GET_PORTFOLIO } from '@/apollo/queries/index';
 import API from '@/api/portfolios/portfolios';
 import Redirect from '@/utils/preRender/preRenderRoute';
 import { PortfolioType } from '@/types/portfolios/portfolios';
 
-const PortfolioDetail: NextPage<PortfolioType> = ({ portfolio }) => {
+interface PortfolioDetailProps {
+  portfolio: PortfolioType;
+}
+
+const PortfolioDetail = ({ portfolio }: PortfolioDetailProps) => {
+  const router = useRouter();
+  const { id } = router.query;
+  const { loading, error, data } = useQuery(GET_PORTFOLIO, {
+    variables: { id }
+  });
+  if (loading) return 'Loading...';
+  if (error) return `Error! ${error.message}`;
+  console.log('data', data);
   return (
     <>
-      <div>{JSON.stringify(portfolio)}</div>
+      <div>portfolio:{JSON.stringify(portfolio)}</div>
+      <div>data:{JSON.stringify(data)}</div>
     </>
   );
 };
@@ -28,14 +44,18 @@ export const getStaticProps: GetStaticProps<
   PortfolioDetailParams
 > = async (ctx) => {
   const id = ctx.params!.id;
-  const portfolio = await API.fetchPortfolio(id);
-  console.log('portfolio', portfolio);
-  return {
-    props: {
-      portfolio
-    },
-    revalidate: 600
-  };
+  try {
+    const portfolio = await API.fetchPortfolio(id);
+    console.log('portfolio', portfolio);
+    return {
+      props: {
+        portfolio
+      },
+      revalidate: 600
+    };
+  } catch (error) {
+    return Redirect.redirectHome;
+  }
 };
 
 export const getStaticPaths: GetStaticPaths<PortfolioDetailParams> =
