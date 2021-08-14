@@ -3,7 +3,11 @@ import Image from 'next/image';
 
 import { PortfolioType } from '@/types/portfolios/portfolios';
 
-const PortfolioCard: FC<PortfolioType> = ({ portfolio }) => {
+interface PortfolioCardProps {
+  portfolio: PortfolioType;
+}
+
+const PortfolioCard: FC<PortfolioCardProps> = ({ portfolio }) => {
   return (
     <div className='max-w-xs rounded overflow-hidden shadow-lg my-2 mx-auto'>
       {/* <Image

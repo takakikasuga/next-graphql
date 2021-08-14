@@ -35,6 +35,8 @@ const typeDefs = gql`
 
   type Mutation {
     createPortfolio(input: PortfolioInput): Portfolio
+    updatePortfolio(id: ID, input: PortfolioInput): Portfolio
+    deletePortfolio(id: ID): ID
   }
 `;
 const resolvers = {
