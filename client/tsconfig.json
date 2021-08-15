@@ -21,9 +21,10 @@
       "@/config/*": ["config/*"],
       "@/types/*": ["types/*"],
       "@/utils/*": ["utils/*"],
-      "@/apollo/*": ["apollo/*"]
+      "@/apollo/*": ["apollo/*"],
+      "@/lib/*": ["lib/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "lib/apolloClient.js"],
   "exclude": ["node_modules"]
 }
