@@ -41,12 +41,17 @@ exports.portfolioQueries = {
   hello: () => {
     return 'Hello World!';
   },
-  portfolio: (root, { id }) => {
+  portfolio: (root, { id }, context, info) => {
+    console.log('context', context);
+    // console.log('info', info);
     console.log('root', root);
     const portfolio = data.portfolios.find((portfolio) => portfolio._id === id);
+
     return portfolio;
   },
   portfolios: () => {
+    console.log('typeof window === undefined', typeof window === 'undefined');
+    console.log('typeof window', typeof window);
     return data.portfolios;
   }
 };

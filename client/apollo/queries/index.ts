@@ -36,7 +36,7 @@ export const CREATE_PORTFOLIO = gql`
   mutation CreatePortfolio {
     createPortfolio(
       input: {
-        title: "Work in USA"
+        title: "Work in USA(キャッシュ検証)"
         company: "WhoKnows"
         companyWebsite: "www.google.com"
         location: "USA, Montana"
@@ -56,5 +56,39 @@ export const CREATE_PORTFOLIO = gql`
       startDate
       endDate
     }
+  }
+`;
+
+export const UPDATE_PORTFOLIO = gql`
+  mutation UpdatePortfolio($id: ID) {
+    updatePortfolio(
+      id: $id
+      input: {
+        title: "Update in USA"
+        company: "Update"
+        companyWebsite: "www.google.com"
+        location: "Update, Montana"
+        jobTitle: "Update"
+        description: "So much responsibility....Overloaaaaaad"
+        startDate: "01/01/2010"
+        endDate: "01/01/2011"
+      }
+    ) {
+      _id
+      title
+      company
+      companyWebsite
+      location
+      jobTitle
+      description
+      startDate
+      endDate
+    }
+  }
+`;
+
+export const DELETE_PORTFOLIO = gql`
+  mutation DeletePortfolio($id: ID) {
+    deletePortfolio(id: $id)
   }
 `;

@@ -6,6 +6,8 @@ import { ApolloProvider } from '@apollo/client';
 import { useApollo } from '@/lib/apolloClient';
 
 function MyApp({ Component, pageProps }: AppProps) {
+  console.log('Component', Component);
+  console.log('pageProps', pageProps);
   const apolloClient = useApollo(pageProps);
   return (
     <ApolloProvider client={apolloClient}>
