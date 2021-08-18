@@ -31,7 +31,6 @@ export const GET_PORTFOLIOS = gql`
     }
   }
 `;
-
 export const CREATE_PORTFOLIO = gql`
   mutation CreatePortfolio {
     createPortfolio(
@@ -64,7 +63,7 @@ export const UPDATE_PORTFOLIO = gql`
     updatePortfolio(
       id: $id
       input: {
-        title: "Update in USA"
+        title: "Update in USA（キャッシュ更新の確認）"
         company: "Update"
         companyWebsite: "www.google.com"
         location: "Update, Montana"

@@ -48,8 +48,9 @@ export const getStaticProps: GetStaticProps<
   const id = ctx.params!.id;
   try {
     const portfolio = await API.fetchPortfolio(id);
+    console.log('portfolio', portfolio);
     // console.log('response', response);
-    if (portfolio) return Redirect.redirectHome;
+    if (!portfolio) return Redirect.redirectHome;
     return {
       props: {
         portfolio,

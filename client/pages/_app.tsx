@@ -2,15 +2,16 @@
 import '../styles/globals.css';
 import type { AppProps } from 'next/app';
 import { Navbar, Footer } from '@/components/commons/index';
-import { ApolloProvider } from '@apollo/client';
-import { useApollo } from '@/lib/apolloClient';
+import { ApolloProvider, InMemoryCache, ApolloClient } from '@apollo/client';
+
+const client = new ApolloClient({
+  uri: 'http://localhost:8000/graphql',
+  cache: new InMemoryCache()
+});
 
 function MyApp({ Component, pageProps }: AppProps) {
-  console.log('Component', Component);
-  console.log('pageProps', pageProps);
-  const apolloClient = useApollo(pageProps);
   return (
-    <ApolloProvider client={apolloClient}>
+    <ApolloProvider client={client}>
       <Navbar>
         <Footer>
           <Component {...pageProps} />
