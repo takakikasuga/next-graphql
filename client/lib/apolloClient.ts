@@ -3,7 +3,7 @@ import { ApolloClient, HttpLink, InMemoryCache } from '@apollo/client';
 import { concatPagination } from '@apollo/client/utilities';
 import merge from 'deepmerge';
 import isEqual from 'lodash/isEqual';
-import { API_ADDRESS, LOCALHOST_ADDRESS } from '@/config/config';
+import { API_ADDRESS, LOCALHOST_ADDRESS } from '@/config/index';
 
 export const APOLLO_STATE_PROP_NAME = '__APOLLO_STATE__';
 

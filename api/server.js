@@ -2,6 +2,7 @@ const express = require('express');
 const morgan = require('morgan');
 // const { graphqlHTTP } = require('express-graphql');
 // const { buildSchema } = require('graphql');
+const { connect } = require('./database/index');
 const { ApolloServer, gql } = require('apollo-server-express');
 const cors = require('cors');
 const { portfolioTypes } = require('./graphql/types/index');
@@ -12,6 +13,8 @@ const {
 const CORS_PORT = process.env.CORS_PORT || 3000;
 const CORS_ADDRESS = `http://localhost:${CORS_PORT}`;
 const app = express();
+// MongoDBとの接続
+connect();
 
 // リクエストの種類をログで出力する
 app.use(morgan('dev'));

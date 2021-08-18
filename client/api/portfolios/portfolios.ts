@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { API_ADDRESS, LOCALHOST_ADDRESS } from '@/config/config';
+import { API_ADDRESS, LOCALHOST_ADDRESS } from '@/config/index';
 import Query from '@/graphql/query/portfolios';
 
 const PortfoliosAPI = {
